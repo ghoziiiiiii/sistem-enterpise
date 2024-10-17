@@ -4,15 +4,6 @@
       data-assets-path="{{ asset('assets/') }}" 
       data-template="vertical-menu-template-free">
 <head>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-    <!-- Helpers -->
-    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
-
-    <!-- Config: Mandatory theme config file -->
-    <script src="{{ asset('assets/js/config.js') }}"></script>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Laravel Admin Starter | Powered by Laravel 10, Bootstrap 5, Sneat Admin Template</title>
@@ -26,8 +17,6 @@
 
     <!-- Config: Mandatory theme config file -->
     <script src="{{ asset('assets/js/config.js') }}"></script>
-
-    
 </head>
 
 <body>
@@ -51,63 +40,67 @@
                 <ul class="menu-inner py-1">
                     <!-- Main Menu -->
                     <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">HUMAN RESOURCES</span>
-                    </li>
-                
-                    <li class="menu-item">
-                        <a href="{{ route('departments.index') }}" class="menu-link">
-                            <i class="menu-icon fas fa-building"></i>
-                            <div data-i18n="Menu 2">Departments</div>
-                        </a>
+                        <span class="menu-header-text">Main Menu</span>
                     </li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
-                            <i class="menu-icon fas fa-users"></i>
-                            <div data-i18n="Menu 2">Employees</div>
+                        <a href="#" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-home" style="color: #007bff;"></i>
+                            <div data-i18n="Menu 1">Human Resource</div>
                         </a>
+                        <ul class="menu-sub">
+                            
+                            <li class="menu-item ">
+                                <a href="{{ route('departments.index') }}" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-home" style="color: #007bff;"></i>
+                                    <div>Departemant</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('employees.index') }}" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-group"></i>
+                                    <div data-i18n="Sub Menu 2">Employees</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('payroll.index') }}" class="menu-link">
+                                    <i class="menu-icon tf-icons bx bx-wallet"></i>
+                                    <div data-i18n="Sub Menu 2">Payrol</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="{{ route('leave.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-calendar"></i>
+                                    <div data-i18n="Sub Menu 2">Leave</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                            <a href="{{ route('attendance.index') }}" class="menu-link">
+                                 <i class="menu-icon tf-icons bx bx-time-five"></i>
+                                    <div data-i18n="Sub Menu 2">Presence</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
-                            <i class="menu-icon fas fa-money-check-alt"></i>
-                            <div data-i18n="Menu 2">Payroll</div>
+                    <a href="#" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-home"></i>
+                            <div data-i18n="Menu 1">User Management</div>
                         </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{ route('submenu1') }}" class="menu-link">
+                                    <div>Users</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ route('roles.index') }}" class="menu-link">
+                                    <div data-i18n="Sub Menu 2">Roles</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                            <i class="menu-icon fas fa-calendar-alt"></i>
-                            <div data-i18n="Menu 2">Leaves</div>
-                        </a>
                     </li>
-                
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                            <i class="menu-icon fas fa-clock"></i>
-                            <div data-i18n="Menu 2">Presences</div>
-                        </a>
-                    </li>
-                
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">SETTINGS</span>
-                    </li>
-                
-                    <li class="menu-item">
-                        <a href="{{ route('roles.index') }}" class="menu-link">
-                            <i class="menu-icon fas fa-user-shield"></i>
-                            <div data-i18n="Menu 2">Roles</div>
-                        </a>
-                    </li>
-                
-                    <li class="menu-item">
-                        <a href="{{ route('submenu1') }}" class="menu-link">
-                            <i class="menu-icon fas fa-users-cog"></i>
-                            <div data-i18n="Menu 2">Users</div>
-                        </a>
-                    </li>        
                 </ul>
-                
-
             </aside>
             <!-- / Menu -->
 

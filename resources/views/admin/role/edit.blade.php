@@ -16,7 +16,7 @@
 
     <form action="{{ route('roles.update', $role->id) }}" method="POST">
         @csrf
-        @method('PUT')
+        @method('PUT') <!-- Metode PUT untuk update data -->
 
         <div class="mb-3">
             <label for="name" class="form-label">Role Name</label>
@@ -38,8 +38,7 @@
             </div>
         </div>
 
-        <!-- Make the update button smaller using btn-sm -->
-        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 @endsection

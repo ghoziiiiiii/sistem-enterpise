@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -13,21 +14,15 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create roles
-        $admin = Role::updateOrCreate(['name' => 'admin']);
-        $operator = Role::updateOrCreate(['name' => 'operator']);
-        
-        // Assign all permissions to admin role
-        $admin->givePermissionTo(Permission::all());
 
-        // Assign specific permissions to operator role
-        $operator->givePermissionTo([
-            'show users',
-            'add users',
-            'edit users',
-            'show department',
-            'add department',
-            'edit department',
-        ]);
+        //membeuat role user / level user
+    $admin = Role::updateORcreate(['name' => 'admin']);
+    $operator = Role::updateORcreate(['name' => 'operator']);
+
+    //memberikan akses ke role admin
+    $admin->givePermissionTo(Permission::all());
+
+    //operator
+    $operator->givePermissionTo('show users','add users','edit users');
     }
 }

@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\PayrollController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DepartmentController;
-// use App\Http\Controllers\DepartmentsController;
-// use App\Http\Controllers\EmployeesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,20 +20,16 @@ use App\Http\Controllers\DepartmentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
 
 // Redirect to login if user is not authenticated
 Route::get('/', function () {
-    if (auth()->check()) {
-        return redirect('/dashboard');
-    }
-    return redirect('/login');
+    return redirect('/dashboard');
 });
 
 // Dashboard route, only accessible by authenticated users
 Route::get('/dashboard', function () {
     return view('admin.blank.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
 
     // Route untuk Submenu 1
@@ -41,9 +39,17 @@ Route::resource('users', UserController::class);
 
 Route::resource('roles', RoleController::class);
 
-// Auth routes (login, register, password reset, etc.)
-require __DIR__.'/auth.php';
+Route::resource('departments', DepartmentController::class);
 
-// Route::resource('departments', DepartmentsController::class);
+route::resource('employees', EmployeeController::class);
 
-// Route::resource('employees', EmployeesController::class);
+route::resource('payroll', PayrollController::class);
+
+Route::resource('leave', LeaveController::class);
+
+
+Route::resource('attendance', AttendanceController::class);
+
+
+
+

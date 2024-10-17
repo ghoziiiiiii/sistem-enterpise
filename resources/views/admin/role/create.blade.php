@@ -36,8 +36,7 @@
             </div>
         </div>
 
-        <!-- Make the save button smaller using btn-sm -->
-        <button type="submit" class="btn btn-success btn-sm">Save</button>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
 </div>
 @endsection
