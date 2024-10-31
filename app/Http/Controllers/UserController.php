@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -28,11 +27,15 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:5|confirmed', // Validasi password
+            'role' => 'required|string',  // Validasi role sebagai string (nama role)
         ]);
 
         $validated['password'] = Hash::make($validated['password']); // Hash password menggunakan Hash::make()
 
+        // Buat user baru
         $user = User::create($validated);
+        
+        // Assign role menggunakan nama role
         $user->assignRole($request->input('role'));
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
@@ -49,11 +52,14 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'.$user->id,
-            
+            'role' => 'required|string', // Validasi role sebagai string
         ]);
 
+        // Update data user
         $user->update($validated);
-        $user->assignRole($request->input('role'));
+        
+        // Sinkronkan role baru menggunakan nama role
+        $user->syncRoles([$request->input('role')]);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }

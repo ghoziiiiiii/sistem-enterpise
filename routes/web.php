@@ -1,14 +1,20 @@
 <?php
 
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\PayrollController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\SendPromotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,15 +47,23 @@ Route::resource('roles', RoleController::class);
 
 Route::resource('departments', DepartmentController::class);
 
-route::resource('employees', EmployeeController::class);
+Route::resource('employees', EmployeeController::class);
+// Rute untuk Employees
+Route::prefix('admin')->group(function () {
+    Route::resource('employees', EmployeeController::class);
+});
 
-route::resource('payroll', PayrollController::class);
+Route::resource('payroll', PayrollController::class);
+Route::get('/payrolls', [PayrollController::class, 'index'])->name('payroll.index');
 
-Route::resource('leave', LeaveController::class);
-
+Route::resource('leave', \App\Http\Controllers\LeaveController::class);
 
 Route::resource('attendance', AttendanceController::class);
 
+//Email
 
+Route::get('/send-email', [EmailController::class, 'send']);
 
-
+Route::resource('customers', CustomerController::class);
+Route::resource('promotions', PromotionController::class);
+Route::post('send-promotion', [SendPromotionController::class, 'send'])->name('send.promotion');
